@@ -1,0 +1,3 @@
+rootProject.name = 'SpeechTest'
+
+include ':app'

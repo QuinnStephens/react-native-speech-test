@@ -10,7 +10,8 @@
 
 @interface RCT_EXTERN_MODULE(SpeechManager, NSObject)
 
-RCT_EXTERN_METHOD(getPermission:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
-RCT_EXTERN_METHOD(toggleRecording:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(getPermission:(RCTPromiseResolveBlock) resolve reject:(RCTPromiseRejectBlock) reject)
+RCT_EXTERN_METHOD(toggleRecording:(RCTPromiseResolveBlock) resolve reject:(RCTPromiseRejectBlock) reject)
+RCT_EXTERN_METHOD(speak: (NSString*) text)
 
 @end

@@ -31,18 +31,22 @@ export default class SpeechTest extends Component {
     super(props);
     
     this.toggleRecording = this.toggleRecording.bind(this)
+    this.speak = this.speak.bind(this)
 
     this.state = { 
+      intro: "Talk to me like the rain and let me listen.",
       recording: false,
       result: ""
     }
+
+    this.speak(this.state.intro)
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.instructions}>
-          Talk to me like the rain and let me listen.
+          {this.state.intro}
         </Text>
 
         <Text style={styles.result}>
@@ -67,9 +71,15 @@ export default class SpeechTest extends Component {
       this.setState({
         result: result
       })
+      this.speak(result)
+
     } catch(e) {
       console.error(e)
     }
+  }
+
+  speak(text) {
+    NativeModules.SpeechManager.speak(text)
   }
 }
 

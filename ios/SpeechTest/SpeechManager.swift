@@ -11,17 +11,13 @@ import Speech
 
 @available(iOS 10.0, *)
 @objc(SpeechManager)
-class SpeechManager: NSObject, SFSpeechRecognizerDelegate {
+class SpeechManager: NSObject {
   
   private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
-  
-  override init() {
-    super.init()
-    speechRecognizer.delegate = self
-  }
+  private let synthesizer = AVSpeechSynthesizer()
   
   @objc func getPermission(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     SFSpeechRecognizer.requestAuthorization { authStatus in
@@ -106,17 +102,11 @@ class SpeechManager: NSObject, SFSpeechRecognizerDelegate {
       try! startRecording(resolve: resolve, reject: reject)
     }
   }
-
-  // MARK: SFSpeechRecognizerDelegate
   
-  @objc func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-//    if available {
-//      recordButton.isEnabled = true
-//      recordButton.setTitle("Start Recording", for: [])
-//    } else {
-//      recordButton.isEnabled = false
-//      recordButton.setTitle("Recognition not available", for: .disabled)
-//    }
+  @objc func speak(_ text: String) {
+    let utterance = AVSpeechUtterance(string: text)
+    utterance.voice = AVSpeechSynthesisVoice(language: "en-us")
+    self.synthesizer.speak(utterance)
   }
   
 }

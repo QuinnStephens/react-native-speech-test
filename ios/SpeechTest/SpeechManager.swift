@@ -53,7 +53,7 @@ class SpeechManager: NSObject {
     }
     
     let audioSession = AVAudioSession.sharedInstance()
-    try audioSession.setCategory(AVAudioSessionCategoryRecord)
+    try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
     try audioSession.setMode(AVAudioSessionModeMeasurement)
     try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
     

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+  Alert,
   AppRegistry,
   NativeModules,
   StyleSheet,
@@ -72,7 +73,12 @@ export default class Home extends Component {
       }
 
     } catch(e) {
-      console.error(e)
+      Alert.alert(
+      "Sorry, I didn't catch that.",
+      "Please try again!",
+      [
+        {text: "OK", onPress: () => {}}
+      ])
     }
   }
 

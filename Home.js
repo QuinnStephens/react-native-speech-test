@@ -28,7 +28,7 @@ export default class Home extends Component {
     this.speak = this.speak.bind(this)
 
     this.state = { 
-      intro: "Talk to me like the rain and let me listen.",
+      intro: "Speak friend and enter",
       recording: false,
       result: ""
     }
@@ -66,6 +66,10 @@ export default class Home extends Component {
         result: result
       })
       this.speak(result)
+
+      if (this.state.recording) { 
+        this.setState({ recording: false }) 
+      }
 
     } catch(e) {
       console.error(e)
